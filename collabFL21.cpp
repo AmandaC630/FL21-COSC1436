@@ -21,6 +21,7 @@ string semester = "Fall 2021";
 
 void showMenu();
 void menu18Smiley(int);
+void menu5Cervantes();
 
 // ***************************************************************
 // END OF FUNCTION PROTOTYPE AREA
@@ -62,6 +63,7 @@ int main()
             case 4:                 // Carpenter - call to function goes here
                 break;
             case 5:                 // Cervantes - call to function goes here
+                menu5Cervantes();
                 break;
             case 6:                 // Chairez - call to function goes here
                 break;
@@ -194,4 +196,74 @@ void menu18Smiley(int numberOfTimes)
 
     cout << endl;
     cout << endl;
+}
+
+// *****************************************************************************************
+// MENU ID:          5
+// FUNCTION:         menu5Cervantes
+// DESCRIPTION:      Takes a sentence inputted from the user (10 to 150 characters long)
+//                   and displays it alternating between upper and lowercase characters
+//                   excluding all non-alphanumeric characters
+// OUTPUT EXAMPLE:   User input: 
+//                      Hello. This is a test sentence
+//                   Program output:
+//                      hElLo tHiS Is a tEsT SeNtEnCe
+// *****************************************************************************************
+void menu5Cervantes()
+{
+    // Variables
+    string sentence;
+    char remainder[151];
+    bool test;    // Used to test the length of the given sentence
+    int i = 0;    // To hold the number of spaces actually used by the array
+
+    // Collect sentence from user
+    cout << "Please enter a sentence with at least 10 characters up to 150 characters, including spaces and punctuation." << endl;
+    getline(cin, sentence);
+    cout << endl;
+
+    // Test the length (10-150 characters)
+    test = true;
+    while (test == true)
+    {
+        if (sentence.size() < 10 || sentence.size() > 150)
+        {
+            sentence.clear();
+            cout << "Error. Statement does not fit the parameters. " << endl;
+            cout << "Please enter a sentence 10 - 150 characters long, including spaces and punctuation." << endl;
+            getline(cin, sentence);
+            cout << endl;
+        }
+        else
+        {
+            test = false;
+        }
+    }
+
+    // Test string for letters, numbers, and spaces to store in an array
+    for (int count = 0; count < sentence.size(); count++)
+    {
+        if (isalnum(sentence[count]) || sentence[count] == ' ')
+        {
+            remainder[i] = sentence[count];
+            i++;
+        }
+    }
+
+    // Display array alternating between upper and lowercase characters
+    for (int count = 0; count < i; count++)
+    {
+        if(count % 2)
+        {
+            remainder[count] = toupper(remainder[count]);
+            cout << remainder[count];
+        }
+        else
+        {
+            remainder[count] = tolower(remainder[count]);
+            cout << remainder[count];
+        }
+    }
+
+    cout << endl << endl;
 }
