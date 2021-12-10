@@ -218,6 +218,7 @@ void menu5Cervantes()
     int i = 0;    // To hold the number of spaces actually used by the array
 
     // Collect sentence from user
+    cin.ignore();  // To pass over the newline character left over from the menu cin line
     cout << "Please enter a sentence with at least 10 characters up to 150 characters, including spaces and punctuation." << endl;
     getline(cin, sentence);
     cout << endl;
